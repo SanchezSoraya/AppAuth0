@@ -17,7 +17,20 @@
                 </li>
             </ul>
             <span class="navbar-text">
-          Navbar text with an inline element
+          
+            <!-- <button  class="btn btn-outline-primary" (click)="auth.loginWithRedirect()">Ingresar</button> -->
+          <!-- <button *ngIf="!auth.loggedIn"  class="btn btn-outline-primary">Ingresar</button>
+          <button *ngIf="auth.loggedIn" class="btn btn-outline-danger">Salir</button> -->
+
+          <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+            <button (click)="auth.logout({ returnTo: document.location.origin })">
+              Salir
+            </button>
+          </ng-container>
+      
+          <ng-template #loggedOut>
+            <button (click)="auth.loginWithRedirect()">Ingresar</button>
+          </ng-template>
         </span>
         </div>
     </div>
